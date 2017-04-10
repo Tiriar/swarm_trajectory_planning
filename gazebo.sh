@@ -38,7 +38,7 @@ tmux bind C-a send-prefix
 input=(
  	"Gazebo" "roslaunch simulation simulation.launch
 "
-	"Spawn" "sleep 5; spawn 1 2 --enable-bluefox-camera --enable-mobius-camera --enable-rangefinder --run --delete
+	"Spawn" "sleep 10; spawn 1 2 --enable-bluefox-camera --enable-mobius-camera --enable-rangefinder --run --delete
 "
 	"KILL_ALL" "tmux kill-session -t $SESSION_NAME"
 )
