@@ -18,6 +18,7 @@ private:
     
     std::vector<std::string> UAVs;
 
+    ros::Subscriber positionSubscriber;
     float dist(Eigen::Vector3f v1, Eigen::Vector3f v2);
 };
 

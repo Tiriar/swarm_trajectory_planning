@@ -9,16 +9,11 @@ int main(int argc, char** argv) {
     ros::init(argc, argv, "boid_controller");
     ros::NodeHandle nh = ros::NodeHandle("~");
     ROS_INFO("Node initialized.");
-    /*
-    World * world;
-    world = new World(nh);
+    
+    UAVController controller(nh);
+    controller.run();
 
-    Controller boid(nh, world);
-    // Main loop of the simulation.
-    boid.run();
-
-    delete world;
-    delete &boid;*/
+    delete &controller;
     ROS_INFO("ENDING THE ROSNODE.");
     std::exit(0);
 }

@@ -1,42 +1,18 @@
 #include "../headers/UAVController.h"
 
 /**
- * Constructor for Controller class.
- * - loads the parameters from config file
- * - updated thisUAV variable
- * - starts logging of the odometry
- * - sets publishers
+ * Constructor
+ * - sets subscribers
  * @param nh ros NodeHandle
- * @param w Pointer on World, where the UAV will fly
  */
-UAVController::UAVController(const ros::NodeHandle& nh, World *w) : world(w), nh_(nh) {
-    /*loadParametersFromConfig();
-
-    updateThisUAV();
-    getAllOtherUAVs();
-    if (logging_enabled) {
-        fe = new FileExporter(LOGS_PATH, thisUAV->getName());
-    }
-
+UAVController::UAVController(const ros::NodeHandle& nh){
     std::ostringstream flyToService, velocityService;
-    flyToService << "/";
-    flyToService << thisUAV->getName();
-    velocityService << flyToService.str();
-    flyToService << "/trackers_manager/mpc_tracker/desired_position";
-    velocityService << "/velocity";
-    flyToPublisher = nh_.advertise<mbzirc_trackers::TrackerPointStamped>(flyToService.str(), 1);
-    velocityPublisher = nh_.advertise<nav_msgs::Odometry>(velocityService.str(), 1);
-    sim_seq = 0;*/
+    positionSubscriber = nh_.subscribe(positionService.str(), 0, &UAV::positionCallback, this);
 }
 
-/**
- * Controller destructor.
- */
+
 UAVController::~UAVController() {
-    /*flyToPublisher.shutdown();
-    velocityPublisher.shutdown();
-    delete fe;
-    delete thisUAV;*/
+
 }
 
 /**
@@ -112,14 +88,13 @@ void UAVController::runOneStep() {
 }
 
 /**
- * Calculate euclidian distance between two vectors.
+ * Calculate euclidean distance between two vectors.
  * @param v1 First vector.
  * @param v2 Second vector.
  * @return Distance of the two given vectors.
  */
 float UAVController::dist(Eigen::Vector3f v1, Eigen::Vector3f v2) {
-    Eigen::Vector3f dif = v1 - v2;
-    return dif.norm();
+    return (v1-v2).norm();
 }
 
 /**
