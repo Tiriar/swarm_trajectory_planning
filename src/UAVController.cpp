@@ -1,13 +1,18 @@
 #include "../headers/UAVController.h"
+#include <boost/concept_check.hpp>
 
 /**
  * Constructor
  * - sets subscribers
  * @param nh ros NodeHandle
  */
-UAVController::UAVController(const ros::NodeHandle& nh){
-    std::ostringstream flyToService, velocityService;
-    positionSubscriber = nh_.subscribe(positionService.str(), 0, &UAV::positionCallback, this);
+UAVController::UAVController(const ros::NodeHandle& nh, const int &uavCount){
+
+  std::ostringstream uavName;
+  for(int i=0;i<uavCount;i++){
+    uavName << "/uav" << i;
+    UAVs.push_back(UAV(nh,uavName);
+  }
 }
 
 
@@ -41,17 +46,6 @@ void UAVController::run() {
     }*/
 }
 
-/**
- * Callback for subscribing of the odometry.
- * @param msg Odometry message containing the position.
- */
-void UAVController::positionCallback(const nav_msgs::OdometryConstPtr& msg) {
-    //if (ready_to_update) {
-    /*position[0] = msg->pose.pose.position.x;
-    position[1] = msg->pose.pose.position.y;
-    position[2] = msg->pose.pose.position.z;*/
-    //}
-}
 
 /**
  * Run one simulation step. Used in Controller::run() method.

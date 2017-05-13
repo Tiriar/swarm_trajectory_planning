@@ -1,0 +1,6 @@
+<launch>	
+		<node name="swarm_trajectory_planning" pkg="swarm_trajectory_planning" type="swarm_trajectory_planning" output="screen" >
+		</node>
+	</group>
+</launch>
+

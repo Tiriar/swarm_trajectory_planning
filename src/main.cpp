@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    std::cout << "PROGRAM STARTED" << std::endl;
+    std::cout << "SWARM STARTED" << std::endl;
     ros::init(argc, argv, "boid_controller");
     ros::NodeHandle nh = ros::NodeHandle("~");
     ROS_INFO("Node initialized.");
