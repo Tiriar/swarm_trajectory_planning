@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>swarm-trajectory-planning</name>
+  <name>swarm_trajectory_planning</name>
   <version>0.0.1</version>
   <description>Offline trajectory planning for a swarm of MAVs using Boids model.</description>
 

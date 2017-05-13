@@ -43,11 +43,12 @@ input=(
 "
 	"PrepareUAV" "export UAV_NAME=$UAV_NAME; sleep 5; rosservice call /$UAV_NAME/mavros/cmd/arming 1; sleep 2; rosservice call /$UAV_NAME/mav_manager_node/motors 1; sleep 2; rosservice call /$UAV_NAME/mavros/set_mode \"base_mode: 0
 custom_mode: offboard\"; sleep 2; rosservice call /$UAV_NAME/mav_manager_node/takeoff; sleep 5; rosservice call /$UAV_NAME/trackers_manager/transition \"tracker: \"mbzirc_trackers/MpcTracker\"\"; rosservice call /$UAV_NAME/trackers_manager/mpc_tracker/goTo \"goal:
-- 4.0
-- 4.0
+- 6.0
+- 0.0
 - 8.0
 - 0.0\"
 "
+	"Boids" "export UAV_NAME=$UAV_NAME; roslaunch boid_controller simulation.launch"
 	"KILL_ALL" "tmux kill-session -t $SESSION_NAME"
 )
 
