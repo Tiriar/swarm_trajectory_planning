@@ -2,6 +2,7 @@
 #define UAVCONTROLLER_H
 
 
+#include <cstdio>
 #include <ros/ros.h>
 #include <eigen3/Eigen/Core>
 #include "string"
@@ -24,7 +25,7 @@ private:
     // Defining methods and so on
     ros::NodeHandle nh_;
     
-    std::vector<UAV> UAVs;
+    std::vector<UAV*> UAVs;
 
     float dist(Eigen::Vector3f v1, Eigen::Vector3f v2);
 };
