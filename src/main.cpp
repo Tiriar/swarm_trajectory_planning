@@ -17,4 +17,3 @@ int main(int argc, char** argv) {
     ROS_INFO("ENDING THE ROSNODE.");
     std::exit(0);
 }
-

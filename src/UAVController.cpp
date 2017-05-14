@@ -1,12 +1,12 @@
 #include "../headers/UAVController.h"
 
+using namespace std;
 /**
  * Constructor
  * - sets subscribers
  * @param nh ros NodeHandle
  */
 UAVController::UAVController(const ros::NodeHandle& nh, const int &uavCount): nh_(nh){
-  
   for(int i=1;i<uavCount+1;i++){
     std::ostringstream uavName;
     uavName << "/uav" << i<<"/mbzirc_odom/slow_odom";
@@ -26,65 +26,24 @@ UAVController::~UAVController() {
  * Method to run the controller with. Definitely or indefinitely, based on config variable.
  */
 void UAVController::run() {
-    // Fill delay queue.
-    /*bool runDefinitely = false;
-    nh_.param("simulation/run/definitely", runDefinitely, false);
-    if (ros::ok() && runDefinitely) {
-        int steps = 0;
-        nh_.param("simulation/run/number_of_steps", steps, 0);
-        for (int i = 0; i < steps; i++) {
-            runOneStep();
-        }
-    } else {*/
-    while (ros::ok()) {
-      runOneStep();
-    }
-           /* } else {
-                for (UAV * uav : allOtherUAVs) {
-                    uav->getPosition();
-                }
-            }
-        }
-    }*/
-}
-
-
-/**
- * Run one simulation step. Used in Controller::run() method.
- */
-void UAVController::runOneStep() {
-    /*Eigen::Vector3f pos = thisUAV->getPosition();
-    std::cout << "Step " << sim_seq << ":\n\t- Position: " << pos.transpose();
-    Eigen::Vector3f err = Eigen::Vector3f::Zero();
-    if (error_localization) {
-        err = localizationError(localization_error);
-        std::cout << "\n\t\t-With localization error: " << err.transpose() << std::endl;
-    }
-    pos += err;
-    updateCloseUAVs();
-    updateCloseBetaAgents();
-    thisUAV->acceleration = getFinalForce(pos);
-    thisUAV->velocity += thisUAV->acceleration;
-    thisUAV->velocity = limit(thisUAV->velocity, max_force);
-    if (maintain_constant_altitude) {
-        thisUAV->velocity[2] = constant_altitude_value - pos[2];
-    } else if (!maintain_constant_altitude && pos[2] < critical_altitude_value) {
-        thisUAV->velocity[2] = critical_altitude_value - pos[2];
-    }
-    pos += thisUAV->velocity;
-    publishVelocity();
-
-    std::cout << "\n\t- Flying to: " << pos.transpose() << std::endl;
-    flyTo(pos);
-
-    if (logging_enabled) {
-        fe->write_odometry(pos, thisUAV->velocity, err);
-    }*/
+  while (ros::ok() && uavsInCircle(startPosition, RADIUS)) {
     for(UAV *i :UAVs){
       Eigen::Vector3f pos = i->getPosition();
       printf("%1.3f, %1.3f, %1.3f\n", pos[0], pos[1], pos[2]);
     }
     ros::Rate(0.5f).sleep();
+  }
+  measurementStart = ros::Time::now().toSec();
+  while (ros::ok() && !uavsInCircle(goalPosition, RADIUS)) {
+    for(UAV *i :UAVs){
+      Eigen::Vector3f pos = i->getPosition();
+      printf("%1.3f, %1.3f, %1.3f\n", pos[0], pos[1], pos[2]);
+    }
+    ros::Rate(0.5f).sleep();
+  }
+  measurementEnd = ros::Time::now().toSec();
+  
+  cout << "Flight duration: "<<(measurementEnd - measurementStart) << endl;
 }
 
 /**
@@ -93,22 +52,38 @@ void UAVController::runOneStep() {
  * @param v2 Second vector.
  * @return Distance of the two given vectors.
  */
-// float UAVController::dist(Eigen::Vector3f v1, Eigen::Vector3f v2) {
-//     return (v1-v2).norm();
-// }
+float UAVController::dist(Eigen::Vector3f v1, Eigen::Vector3f v2) {
+    return (v1-v2).norm();
+}
 
+float UAVController::dist2D(Eigen::Vector3f v1, Eigen::Vector3f v2){
+    Eigen::Vector2f t1 = Eigen::Vector2f(v1[0], v1[1]);
+    Eigen::Vector2f t2 = Eigen::Vector2f(v2[0], v2[1]);
+    return (t1-t2).norm();
+    
+}
 /**
  * Normalize vector. 
  * @param vec Vector to be normalized.
  * @return Normalized vector.
  */
-//Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
-//    float m = vec.norm();
-//    if (m > 1e-15 && m != 1) {
-//        vec /= m;
-//    }
-//    return vec;
-//}
+Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
+  float m = vec.norm();
+  if (m > 1e-15 && m != 1) {
+    vec /= m;
+  }
+  return vec;
+}
+
+//True if all uavs within cylinder of radius r at position pos
+bool UAVController::uavsInCircle(Eigen::Vector3f pos, float r){
+  for(UAV *u : UAVs){
+    if(dist2D(u->getPosition(),pos)>RADIUS){
+      return false;
+    }
+  }
+  return true;
+}
 
 /**
  * Fits an exponential function to the input data

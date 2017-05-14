@@ -19,15 +19,15 @@ public:
     void run();
 
 private:
-    void runOneStep();
-    
-    // Defining methods and so on
     ros::NodeHandle nh_;
-    
     std::vector<UAV*> UAVs;
-
+    const Eigen::Vector3f startPosition, goalPosition;
+    const float RADIUS = 5;
+    double measurementStart, measurementEnd;
+    bool uavsInCircle(Eigen::Vector3f pos, float r);
     float dist(Eigen::Vector3f v1, Eigen::Vector3f v2);
-
+    float dist2D(Eigen::Vector3f v1, Eigen::Vector3f v2);
+    Eigen::Vector3f normalize(Eigen::Vector3f vec);
     std::vector<double> fit(std::vector<double> x, std::vector<double> y);
 };
 
