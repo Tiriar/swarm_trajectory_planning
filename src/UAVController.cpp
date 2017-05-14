@@ -1,5 +1,4 @@
 #include "../headers/UAVController.h"
-#include <boost/concept_check.hpp>
 
 /**
  * Constructor
@@ -7,11 +6,10 @@
  * @param nh ros NodeHandle
  */
 UAVController::UAVController(const ros::NodeHandle& nh, const int &uavCount){
-
   std::ostringstream uavName;
   for(int i=0;i<uavCount;i++){
     uavName << "/uav" << i;
-    UAVs.push_back(UAV(nh,uavName);
+//     UAVs.push_back(UAV(nh,uavName.str()));
   }
 }
 
@@ -33,11 +31,11 @@ void UAVController::run() {
         for (int i = 0; i < steps; i++) {
             runOneStep();
         }
-    } else {
-        while (ros::ok()) {
-            if (sim_seq++ > 2) {
-                runOneStep();
-            } else {
+    } else {*/
+    while (ros::ok()) {
+      runOneStep();
+    }
+           /* } else {
                 for (UAV * uav : allOtherUAVs) {
                     uav->getPosition();
                 }
@@ -77,8 +75,11 @@ void UAVController::runOneStep() {
 
     if (logging_enabled) {
         fe->write_odometry(pos, thisUAV->velocity, err);
+    }*/
+    for(UAV i :UAVs){
+      std::cout << i.getPosition()<<std::endl;
     }
-    ros::Rate(run_rate).sleep();*/
+    ros::Rate(5.0f).sleep();
 }
 
 /**
@@ -87,19 +88,19 @@ void UAVController::runOneStep() {
  * @param v2 Second vector.
  * @return Distance of the two given vectors.
  */
-float UAVController::dist(Eigen::Vector3f v1, Eigen::Vector3f v2) {
-    return (v1-v2).norm();
-}
+// float UAVController::dist(Eigen::Vector3f v1, Eigen::Vector3f v2) {
+//     return (v1-v2).norm();
+// }
 
 /**
  * Normalize vector. 
  * @param vec Vector to be normalized.
  * @return Normalized vector.
  */
-Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
-    float m = vec.norm();
-    if (m > 1e-15 && m != 1) {
-        vec /= m;
-    }
-    return vec;
-}
+// Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
+//     float m = vec.norm();
+//     if (m > 1e-15 && m != 1) {
+//         vec /= m;
+//     }
+//     return vec;
+// }

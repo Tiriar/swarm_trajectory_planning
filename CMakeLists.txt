@@ -1,16 +1,21 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(swarm_trajectory_planning)
 
-## Add support for C++11, supported in ROS Kinetic and newer
-# add_definitions(-std=c++11)
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(gazebo REQUIRED)
 
-## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(catkin REQUIRED COMPONENTS
+  gazebo_msgs
+  mavros
+  mavros_msgs
+  mbzirc_odom
+  roscpp
+  rospy
+  rosservice
+)
+
+find_package(Boost REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -64,10 +69,10 @@ find_package(catkin REQUIRED)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+   DEPENDENCIES
+   std_msgs  # Or other packages containing msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -99,7 +104,7 @@ find_package(catkin REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS headers
 #  LIBRARIES swarm_trajectory_planning
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
@@ -117,6 +122,10 @@ catkin_package(
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/swarm_trajectory_planning.cpp
 # )
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+  ${GAZEBO_INCLUDE_DIRS}
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -127,6 +136,27 @@ catkin_package(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/swarm_trajectory_planning_node.cpp)
+
+## Declare a C++ executable
+add_executable(swarm_trajectory_planning
+  src/main.cpp
+  src/UAVController.cpp
+  src/UAV.cpp
+)
+
+## Add cmake target dependencies of the executable
+## same as for the library above
+add_dependencies(swarm_trajectory_planning ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+## Specify libraries to link a library or executable target against
+target_link_libraries(swarm_trajectory_planning
+   ${catkin_LIBRARIES}
+   ${GAZEBO_LIBRARIES}
+ )
+
+link_directories(${GAZEBO_LIBRARY_DIRS})
+
+ 
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
