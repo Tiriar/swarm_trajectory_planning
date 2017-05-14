@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
     ros::init(argc, argv, "swarm_trajectory_planning");
     ros::NodeHandle nh = ros::NodeHandle("~");
     ROS_INFO("Node initialized.");
-    
+
     UAVController controller(nh, 2);
     controller.run();
 
