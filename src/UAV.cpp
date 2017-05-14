@@ -1,6 +1,7 @@
 #include "../headers/UAV.h"
 
 UAV::UAV(const ros::NodeHandle& nh, const std::string &uavName) : nh_(nh) {
+  std::cout << "Creating UAV " << uavName <<std::endl;
   positionSubscriber = nh_.subscribe(uavName.c_str(), 2, &UAV::positionCallback, this);
 }
 

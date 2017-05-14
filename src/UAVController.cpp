@@ -6,16 +6,20 @@
  * @param nh ros NodeHandle
  */
 UAVController::UAVController(const ros::NodeHandle& nh, const int &uavCount){
-  std::ostringstream uavName;
-  for(int i=0;i<uavCount;i++){
-    uavName << "/uav" << i;
-//     UAVs.push_back(UAV(nh,uavName.str()));
+  
+  for(int i=1;i<uavCount+1;i++){
+    std::ostringstream uavName;
+    uavName << "/uav" << i<<"/mbzirc_odom/slow_odom";
+    std::cout << "Creating "<<uavName<<std::endl;
+    UAVs.push_back(UAV(nh,uavName.str()));
   }
 }
 
 
 UAVController::~UAVController() {
-
+  for(auto uav : UAVs){
+    delete &uav;
+  }
 }
 
 /**
@@ -77,9 +81,10 @@ void UAVController::runOneStep() {
         fe->write_odometry(pos, thisUAV->velocity, err);
     }*/
     for(UAV i :UAVs){
-      std::cout << i.getPosition()<<std::endl;
+      auto pos = i.getPosition();
+      std::cout << pos[0]<<", " <<pos[1]<<", "<<pos[2]<<std::endl;
     }
-    ros::Rate(5.0f).sleep();
+    ros::Rate(0.5f).sleep();
 }
 
 /**
