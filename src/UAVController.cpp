@@ -111,8 +111,8 @@ void UAVController::runOneStep() {
  * @param y Y-axis of the input data
  * @return std::vector<double> of the exponential parameters (a,b) for f(x)=a*e^(b*x)
  */
-int fit(std::vector<double> x, std::vector<double> y){
-    int n = x.size();
+std::vector<double> fit(std::vector<double> x, std::vector<double> y){
+    unsigned long n = x.size();
     double lny[n], a, b, c;
     for (int i=0; i<n; i++) lny[i] = log(y[i]);
 
@@ -130,7 +130,6 @@ int fit(std::vector<double> x, std::vector<double> y){
     double y_fit[n];
     for (int i=0;i<n;i++) y_fit[i] = c*pow(2.71828, a*x[i]);    //to calculate y(fitted) at given x points
 
-    cout<<"\nThe exponential fit is given by:\ny = "<<c<<"e^"<<a<<"x\n";
     std::vector<double> out = {c, a};
     return out;
 }
