@@ -13,7 +13,6 @@ int main(int argc, char** argv) {
     UAVController controller(nh, 2);
     controller.run();
 
-    delete &controller;
     ROS_INFO("ENDING THE ROSNODE.");
     std::exit(0);
 }

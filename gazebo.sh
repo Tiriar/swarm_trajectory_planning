@@ -10,7 +10,7 @@ else
   SESSION_NAME="$(tmux display-message -p '#S')"
 fi
 
-# UNCOMMENT IF YOU WANT TO LOG SESSIONS 
+# UNCOMMENT IF YOU WANT TO LOG SESSIONS
 #LOG_DIR=~/logs_tmux
 #suffix=$(date +"%Y_%m_%d_%H_%M_%S")
 #SUBLOG_DIR=$LOG_DIR"/logs_"$suffix
@@ -38,14 +38,15 @@ tmux bind C-a send-prefix
 input=(
  	"Gazebo" "roslaunch simulation simulation.launch
 "
-	"Spawn" "spawn 1 2 --enable-bluefox-camera --enable-mobius-camera --enable-rangefinder --run --delete"
+	"Spawn" "sleep 5; spawn 1 2 --enable-bluefox-camera --enable-mobius-camera --enable-rangefinder --run --delete
+"
 	"KILL_ALL" "tmux kill-session -t $SESSION_NAME"
 )
 
 # create arrays of names and commands
 for ((i=0; i < ${#input[*]}; i++));
 do
-  ((i%2==0)) && names[$i/2]="${input[$i]}" 
+  ((i%2==0)) && names[$i/2]="${input[$i]}"
 	((i%2==1)) && cmds[$i/2]="${input[$i]}"
 done
 

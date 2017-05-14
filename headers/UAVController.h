@@ -21,7 +21,7 @@ public:
 private:
     ros::NodeHandle nh_;
     std::vector<UAV*> UAVs;
-    const Eigen::Vector3f startPosition, goalPosition;
+    Eigen::Vector3f startPosition, goalPosition;
     const float RADIUS = 5;
     double measurementStart, measurementEnd;
     bool uavsInCircle(Eigen::Vector3f pos, float r);

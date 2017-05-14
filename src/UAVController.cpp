@@ -7,6 +7,8 @@ using namespace std;
  * @param nh ros NodeHandle
  */
 UAVController::UAVController(const ros::NodeHandle& nh, const int &uavCount): nh_(nh){
+  startPosition = Eigen::Vector3f(10.0f, 0.0f, 0.0f);
+  goalPosition = Eigen::Vector3f(20.0f, 0.0f, 0.0f);
   for(int i=1;i<uavCount+1;i++){
     std::ostringstream uavName;
     uavName << "/uav" << i<<"/mbzirc_odom/slow_odom";
@@ -17,9 +19,9 @@ UAVController::UAVController(const ros::NodeHandle& nh, const int &uavCount): nh
 
 
 UAVController::~UAVController() {
-  for(UAV *uav : UAVs){
-    delete &uav;
-  }
+//   for(UAV *uav : UAVs){
+//     delete &uav;
+//   }
 }
 
 /**
@@ -29,21 +31,23 @@ void UAVController::run() {
   while (ros::ok() && !uavsInCircle(startPosition, RADIUS)) {
     for(UAV *i :UAVs){
       Eigen::Vector3f pos = i->getPosition();
-      printf("%1.3f, %1.3f, %1.3f\n", pos[0], pos[1], pos[2]);
+//       printf("%1.3f, %1.3f, %1.3f\n", pos[0], pos[1], pos[2]);
     }
     ros::Rate(0.5f).sleep();
   }
   measurementStart = ros::Time::now().toSec();
+  ROS_INFO("MEASUREMENT START");
   while (ros::ok() && !uavsInCircle(goalPosition, RADIUS)) {
     for(UAV *i :UAVs){
       Eigen::Vector3f pos = i->getPosition();
-      printf("%1.3f, %1.3f, %1.3f\n", pos[0], pos[1], pos[2]);
+//       printf("%1.3f, %1.3f, %1.3f\n", pos[0], pos[1], pos[2]);
     }
-    ros::Rate(0.5f).sleep();
+    ros::Rate(5.0f).sleep();
   }
   measurementEnd = ros::Time::now().toSec();
+  ROS_INFO("MEASUREMENT END");
   
-  cout << "Flight duration: "<<(measurementEnd - measurementStart) << endl;
+  cout << "FLIGHT DURATION: "<<(measurementEnd - measurementStart) << endl;
 }
 
 /**
@@ -78,7 +82,7 @@ Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
 //True if any uav within cylinder of radius r at position pos
 bool UAVController::uavsInCircle(Eigen::Vector3f pos, float r){
   for(UAV *u : UAVs){
-    if(dist2D(u->getPosition(),pos)<RADIUS){
+    if(dist2D(u->getPosition(),pos) < RADIUS){
       return true;
     }
   }

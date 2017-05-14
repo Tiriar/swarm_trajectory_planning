@@ -8,8 +8,8 @@ UAV::UAV(const ros::NodeHandle& nh, const char* uavName){
   cout << name <<endl;
   this->name = string(uavName);
   cout << name <<endl;
-  positionSubscriber = nh_.subscribe(name.c_str(), 0, &UAV::positionCallback, this);
-  position = Eigen::Vector3f::Zero();
+  positionSubscriber = nh_.subscribe(name.c_str(), 1, &UAV::positionCallback, this);
+  position = Eigen::Vector3f(-999999.0f,-999999.0f,-999999.0f);
 }
 
 UAV::~UAV() {
