@@ -8,6 +8,7 @@
 #include "sstream"
 #include <iostream>
 #include <nav_msgs/Odometry.h>
+#include <cmath>
 
 #include "../headers/UAV.h"
 
