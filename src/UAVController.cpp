@@ -26,7 +26,7 @@ UAVController::~UAVController() {
  * Method to run the controller with. Definitely or indefinitely, based on config variable.
  */
 void UAVController::run() {
-  while (ros::ok() && uavsInCircle(startPosition, RADIUS)) {
+  while (ros::ok() && !uavsInCircle(startPosition, RADIUS)) {
     for(UAV *i :UAVs){
       Eigen::Vector3f pos = i->getPosition();
       printf("%1.3f, %1.3f, %1.3f\n", pos[0], pos[1], pos[2]);
@@ -75,14 +75,14 @@ Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
   return vec;
 }
 
-//True if all uavs within cylinder of radius r at position pos
+//True if any uav within cylinder of radius r at position pos
 bool UAVController::uavsInCircle(Eigen::Vector3f pos, float r){
   for(UAV *u : UAVs){
-    if(dist2D(u->getPosition(),pos)>RADIUS){
-      return false;
+    if(dist2D(u->getPosition(),pos)<RADIUS){
+      return true;
     }
   }
-  return true;
+  return false;
 }
 
 /**
