@@ -79,10 +79,10 @@ Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
   return vec;
 }
 
-//True if any uav within cylinder of radius r at position pos
+//True if all uavs within cylinder of radius r at position pos
 bool UAVController::uavsInCircle(Eigen::Vector3f pos, float r){
   for(UAV *u : UAVs){
-    if(dist2D(u->getPosition(),pos) < RADIUS){
+    if(dist2D(u->getPosition(),pos)>RADIUS){
       return true;
     }
   }
