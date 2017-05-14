@@ -1,7 +1,7 @@
 #include "../headers/UAV.h"
 
-UAV::UAV(const ros::NodeHandle& nh, const std::string &uavName){
-  positionSubscriber = nh.subscribe(uavName.str(), 2, &UAV::positionCallback, this);
+UAV::UAV(const ros::NodeHandle& nh, const std::string &uavName) : nh_(nh) {
+  positionSubscriber = nh_.subscribe(uavName.c_str(), 2, &UAV::positionCallback, this);
 }
 
 UAV::~UAV() {

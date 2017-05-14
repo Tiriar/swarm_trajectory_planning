@@ -1,11 +1,20 @@
 #ifndef UAVCONTROLLER_H
 #define UAVCONTROLLER_H
 
+
+#include <ros/ros.h>
+#include <eigen3/Eigen/Core>
+#include "string"
+#include "sstream"
+#include <iostream>
+#include <nav_msgs/Odometry.h>
+#include <cmath>
+
 #include "../headers/UAV.h"
 
 class UAVController {
 public:
-    UAVController(const ros::NodeHandle& nh);
+    UAVController(const ros::NodeHandle& nh, const int &uavCount);
     ~UAVController();
     void run();
 

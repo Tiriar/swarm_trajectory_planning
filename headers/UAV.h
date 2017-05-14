@@ -15,10 +15,11 @@ public:
     Eigen::Vector3f getPosition();
     
 private:
-    
-    void positionCallback(const nav_msgs::OdometryConstPtr& msg);
+    std::string name;
     Eigen::Vector3f position;
     ros::NodeHandle nh_;
     ros::Subscriber positionSubscriber;
+    
+    void positionCallback(const nav_msgs::OdometryConstPtr& msg);
 };
 #endif /* UAV_H */
