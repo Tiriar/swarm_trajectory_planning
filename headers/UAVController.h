@@ -1,7 +1,6 @@
 #ifndef UAVCONTROLLER_H
 #define UAVCONTROLLER_H
 
-
 #include <ros/ros.h>
 #include <eigen3/Eigen/Core>
 #include "string"
@@ -27,6 +26,8 @@ private:
     std::vector<UAV> UAVs;
 
     float dist(Eigen::Vector3f v1, Eigen::Vector3f v2);
+
+    std::vector<double> fit(std::vector<double> x, std::vector<double> y);
 };
 
 
