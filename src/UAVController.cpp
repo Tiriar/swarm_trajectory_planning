@@ -1,5 +1,6 @@
 #include "../headers/UAVController.h"
 #include <boost/concept_check.hpp>
+#include <cmath>
 
 /**
  * Constructor
@@ -102,4 +103,34 @@ Eigen::Vector3f UAVController::normalize(Eigen::Vector3f vec) {
         vec /= m;
     }
     return vec;
+}
+
+/**
+ * Fits an exponential function to the input data
+ * @param x X-axis of the input data
+ * @param y Y-axis of the input data
+ * @return std::vector<double> of the exponential parameters (a,b) for f(x)=a*e^(b*x)
+ */
+int fit(std::vector<double> x, std::vector<double> y){
+    int n = x.size();
+    double lny[n], a, b, c;
+    for (int i=0; i<n; i++) lny[i] = log(y[i]);
+
+    double xsum=0, x2sum=0, ysum=0, xysum=0;    //variables for sums/sigma of xi,yi,xi^2,xiyi etc
+    for (int i=0; i<n; i++){
+        xsum = xsum+x[i];             //calculate sigma(xi)
+        ysum = ysum+lny[i];           //calculate sigma(yi)
+        x2sum = x2sum+pow(x[i],2);    //calculate sigma(x^2i)
+        xysum = xysum+x[i]*lny[i];    //calculate sigma(xi*yi)
+    }
+    a = (n*xysum-xsum*ysum)/(n*x2sum-xsum*xsum);        //calculate slope(or the the power of exp)
+    b = (x2sum*ysum-xsum*xysum)/(x2sum*n-xsum*xsum);    //calculate intercept
+    c = pow(2.71828, b);                                //since b=ln(c)
+
+    double y_fit[n];
+    for (int i=0;i<n;i++) y_fit[i] = c*pow(2.71828, a*x[i]);    //to calculate y(fitted) at given x points
+
+    cout<<"\nThe exponential fit is given by:\ny = "<<c<<"e^"<<a<<"x\n";
+    std::vector<double> out = {c, a};
+    return out;
 }
