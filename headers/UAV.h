@@ -13,14 +13,15 @@ class UAV {
 public:
     UAV(const ros::NodeHandle& nh, const char* uavName);
     ~UAV();
-    Eigen::Vector3f getPosition();
-    
+    Eigen::Vector3d getPosition();
 private:
     std::string name;
-    Eigen::Vector3f position;
+    Eigen::Vector3d position;
     ros::NodeHandle nh_;
     ros::Subscriber positionSubscriber;
+
     void updatePosition();
     void positionCallback(const nav_msgs::OdometryConstPtr& msg);
 };
+
 #endif /* UAV_H */

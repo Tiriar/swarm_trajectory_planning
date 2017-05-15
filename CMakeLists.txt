@@ -72,7 +72,7 @@ find_package(Boost REQUIRED)
 generate_messages(
    DEPENDENCIES
    std_msgs  # Or other packages containing msgs
- )
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -140,8 +140,9 @@ include_directories(
 ## Declare a C++ executable
 add_executable(swarm_trajectory_planning
   src/main.cpp
-  src/UAVController.cpp
+  src/Checkpoint.cpp
   src/UAV.cpp
+  src/data_fitting.cpp
 )
 
 ## Add cmake target dependencies of the executable
