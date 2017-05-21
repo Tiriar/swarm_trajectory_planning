@@ -49,6 +49,11 @@ custom_mode: offboard\"; sleep 2; rosservice call /$UAV_NAME/mav_manager_node/ta
 - 0.0\"
 "
 	"Boids" "export UAV_NAME=$UAV_NAME; roslaunch boid_controller simulation.launch"
+	"GoBack" "export UAV_NAME=$UAV_NAME; rosservice call /$UAV_NAME/trackers_manager/mpc_tracker/goTo \"goal:
+- -10.0
+- -1.0
+- 8.0
+- 0.0\""
 	"KILL_ALL" "tmux kill-session -t $SESSION_NAME"
 )
 

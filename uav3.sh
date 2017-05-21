@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SESSION_NAME=uav2
+SESSION_NAME=uav3
 UAV_NAME=$SESSION_NAME
 
 if [ -z ${TMUX} ];
@@ -11,7 +11,7 @@ else
   SESSION_NAME="$(tmux display-message -p '#S')"
 fi
 
-# UNCOMMENT IF YOU WANT TO LOG SESSIONS
+# UNCOMMENT IF YOU WANT TO LOG SESSIONS 
 #LOG_DIR=~/logs_tmux
 #suffix=$(date +"%Y_%m_%d_%H_%M_%S")
 #SUBLOG_DIR=$LOG_DIR"/logs_"$suffix
@@ -43,15 +43,15 @@ input=(
 "
 	"PrepareUAV" "export UAV_NAME=$UAV_NAME; sleep 5; rosservice call /$UAV_NAME/mavros/cmd/arming 1; sleep 2; rosservice call /$UAV_NAME/mav_manager_node/motors 1; sleep 2; rosservice call /$UAV_NAME/mavros/set_mode \"base_mode: 0
 custom_mode: offboard\"; sleep 2; rosservice call /$UAV_NAME/mav_manager_node/takeoff; sleep 5; rosservice call /$UAV_NAME/trackers_manager/transition \"tracker: \"mbzirc_trackers/MpcTracker\"\"; rosservice call /$UAV_NAME/trackers_manager/mpc_tracker/goTo \"goal:
-- -10.0
-- 1.0
+- -12.0
+- 0.0
 - 8.0
 - 0.0\"
 "
 	"Boids" "export UAV_NAME=$UAV_NAME; roslaunch boid_controller simulation.launch"
 	"GoBack" "export UAV_NAME=$UAV_NAME; rosservice call /$UAV_NAME/trackers_manager/mpc_tracker/goTo \"goal:
-- -10.0
-- 1.0
+- -12.0
+- 0.0
 - 8.0
 - 0.0\""
 	"KILL_ALL" "tmux kill-session -t $SESSION_NAME"
@@ -60,7 +60,7 @@ custom_mode: offboard\"; sleep 2; rosservice call /$UAV_NAME/mav_manager_node/ta
 # create arrays of names and commands
 for ((i=0; i < ${#input[*]}; i++));
 do
-  ((i%2==0)) && names[$i/2]="${input[$i]}"
+  ((i%2==0)) && names[$i/2]="${input[$i]}" 
 	((i%2==1)) && cmds[$i/2]="${input[$i]}"
 done
 
