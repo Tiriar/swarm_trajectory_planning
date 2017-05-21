@@ -2,15 +2,14 @@
 
 using namespace std;
 
-double time_without_obstacles = 1.17; // normalized to 1 meter!
+//uav_safe_distance = 2, obs_safe_distance = 2, obs_critical_distance = 1, obstacle radius = 10
+double time_without_obstacles = 1.584; // normalized to 1 meter!
 // x[i] = gap size for i-th measurement
-vector<double> x = {1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0};
+vector<double> x = {1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.5, 4.0};
 // y[FLOCK_SIZE][i] = measured time increment for i-th gap size (normalized to 1 meter!)
-vector<vector<double>> y = {{1.75, 1.70, 1.58, 1.35, 1.33, 1.23, 1.20, 0.98, 0.95, 0.88, 0.85},
-                            {2.91, 2.93, 2.36, 2.04, 1.87, 1.53, 1.40, 1.23, 1.18, 1.10, 0.95},
-                            {3.89, 3.57, 3.18, 2.60, 2.15, 1.88, 1.80, 1.60, 1.50, 1.43, 1.30},
-                            {4.65, 4.13, 3.58, 3.05, 2.63, 2.45, 2.23, 1.90, 1.73, 1.58, 1.45},
-                            {5.80, 4.97, 4.17, 3.82, 3.47, 2.92, 2.67, 2.52, 2.27, 1.72, 1.67}};
+vector<vector<double>> y = {{5.700, 4.796, 4.200, 3.998, 3.602, 3.298, 3.008, 2.896, 2.685, 2.433, 2.381, 2.022, 1.809},
+                            {7.314, 6.698, 6.138, 5.752, 5.298, 4.998, 4.314, 4.092, 3.800, 3.396, 3.094, 2.468, 1.998},
+                            {9.515, 8.836, 7.951, 7.536, 7.048, 6.521, 6.093, 5.684, 5.281, 4.935, 4.729, 4.112, 3.598}};
 
 /**
  * Computes the edges evaluation function and prints it out (d = distance, g = gap size, f = flock size)
