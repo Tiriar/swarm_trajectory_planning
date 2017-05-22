@@ -143,6 +143,7 @@ add_executable(swarm_trajectory_planning
   src/Checkpoint.cpp
   src/UAV.cpp
   src/data_fitting.cpp
+  src/graph.cpp
 )
 
 ## Add cmake target dependencies of the executable
