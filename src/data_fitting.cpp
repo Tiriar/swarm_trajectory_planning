@@ -2,19 +2,13 @@
 
 using namespace std;
 
-//uav_safe_distance = 2, obs_safe_distance = 2, obs_critical_distance = 1, obstacle radius = 10
-double time_without_obstacles = 1.584; // normalized to 1 meter!
-// x[i] = gap size for i-th measurement
-vector<double> x = {1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.5, 4.0};
-// y[FLOCK_SIZE][i] = measured time increment for i-th gap size (normalized to 1 meter!)
-vector<vector<double>> y = {{5.700, 4.796, 4.200, 3.998, 3.602, 3.298, 3.008, 2.896, 2.685, 2.433, 2.381, 2.022, 1.809},
-                            {7.314, 6.698, 6.138, 5.752, 5.298, 4.998, 4.314, 4.092, 3.800, 3.396, 3.094, 2.468, 1.998},
-                            {9.515, 8.836, 7.951, 7.536, 7.048, 6.521, 6.093, 5.684, 5.281, 4.935, 4.729, 4.112, 3.598}};
-
 /**
  * Computes the edges evaluation function and prints it out (d = distance, g = gap size, f = flock size)
+ * @param time_without_obstacles measured time without obstacles normalized to 1 meter
+ * @param x x[i] = gap size for i-th measurement
+ * @param y y[FLOCK_SIZE][i] = measured time increment for i-th gap size (normalized to 1 meter)
  */
-void fitting_run() {
+void fitting_run(double time_without_obstacles, vector<double> x, vector<vector<double>> y) {
     unsigned long n = y.size();
 
     vector<double> exps;
@@ -37,7 +31,7 @@ void fitting_run() {
     vector<double> lin_b = lin_fit(flock_size, exp_b);
     cout << "Function for multiple UAVs: " << time_without_obstacles
          << "*d+(" << lin_a[0] << "*f+" << lin_a[1]
-         <<")*e^((" << lin_b[0] << "*f+" << lin_b[1] << ")*g)" << endl;
+         <<")*e^((" << lin_b[0] << "*f" << lin_b[1] << ")*g)" << endl;
 }
 
 /**

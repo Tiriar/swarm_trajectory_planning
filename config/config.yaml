@@ -1,5 +1,5 @@
 # state: MEASURING = 0, FITTING = 1, SEARCHING = 2
-state: 2
+state: 1
 
 # parameters for MEASURING part
 flock_size: 2
@@ -12,3 +12,7 @@ stop:
  y: 0.0
  z: 0.0
 radius: 10
+
+# parameters for SEARCHING part
+start_node: 0
+end_node: 26
