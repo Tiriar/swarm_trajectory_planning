@@ -1,5 +1,5 @@
 # state: MEASURING = 0, FITTING = 1, SEARCHING = 2
-state: 1
+state: 2
 
 # parameters for MEASURING part
 flock_size: 2
