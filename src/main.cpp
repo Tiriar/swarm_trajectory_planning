@@ -6,32 +6,43 @@
 
 using namespace std;
 
-enum State {MEASURING, FITTING, SEARCHING};
-State current = SEARCHING;
-
-const int FLOCK_SIZE = 2;
-const Eigen::Vector3d START = Eigen::Vector3d(5.0, 0.0, 0.0);
-const Eigen::Vector3d STOP = Eigen::Vector3d(15.0, 0.0, 0.0);
-const float RADIUS = 10;
-
 int main(int argc, char** argv) {
     ros::init(argc, argv, "swarm_trajectory_planning");
     ros::NodeHandle nh = ros::NodeHandle("~");
     ROS_INFO("NODE INITIALIZED.");
 
+    int state;
+    nh.param("state", state, 0);
+
     /*=====MEASURING PART=====*/
-    if (current == MEASURING) {
-        Checkpoint cp(nh, FLOCK_SIZE);
-        cp.measureTime(START, STOP, RADIUS);
+    if (state == 0) {
+        int flock_size;
+        nh.param("flock_size", flock_size, 2);
+
+        double x, y, z;
+        nh.param("start/x", x, 0.0);
+        nh.param("start/y", y, 0.0);
+        nh.param("start/z", z, 0.0);
+        Eigen::Vector3d start = Eigen::Vector3d(x, y, z);
+        nh.param("stop/x", x, 0.0);
+        nh.param("stop/y", y, 0.0);
+        nh.param("stop/z", z, 0.0);
+        Eigen::Vector3d stop = Eigen::Vector3d(x, y, z);
+
+        float radius;
+        nh.param("radius", radius, 0.0f);
+
+        Checkpoint cp(nh, flock_size);
+        cp.measureTime(start, stop, radius);
     }
 
     /*=====FITTING PART=====*/
-    if (current == FITTING) {
+    else if (state == 1) {
         fitting_run();
     }
 
     /*=====GRAPH SEARCHING PART=====*/
-    if (current == SEARCHING) {
+    else if (state == 2) {
         string voro_path;
         nh.getParam("voro_path", voro_path);
         vector<vector<double>> vertices = load_vertices(voro_path);

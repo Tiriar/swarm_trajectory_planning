@@ -1,6 +1,6 @@
 <launch>	
 	<node name="swarm_trajectory_planning" pkg="swarm_trajectory_planning" type="swarm_trajectory_planning" output="screen" >
 		<param name="voro_path" value="$(find swarm_trajectory_planning)/config/voro_output.txt" />
+		<rosparam file="$(find swarm_trajectory_planning)/config/config.yaml" />
 	</node>
 </launch>
-

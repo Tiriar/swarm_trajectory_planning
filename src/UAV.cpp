@@ -26,9 +26,6 @@ UAV::~UAV() {
  * @param msg odometry message
  */
 void UAV::positionCallback(const nav_msgs::OdometryConstPtr& msg) {
-//    cout << "Callback: " << msg->pose.pose.position.x << ", " <<
-//                            msg->pose.pose.position.y << ", " <<
-//                            msg->pose.pose.position.z << endl;
     position[0] = msg->pose.pose.position.x;
     position[1] = msg->pose.pose.position.y;
     position[2] = msg->pose.pose.position.z;

@@ -1,0 +1,14 @@
+# state: MEASURING = 0, FITTING = 1, SEARCHING = 2
+state: 2
+
+# parameters for MEASURING part
+flock_size: 2
+start:
+ x: 5.0
+ y: 0.0
+ z: 0.0
+stop:
+ x: 15.0
+ y: 0.0
+ z: 0.0
+radius: 10
