@@ -1,0 +1,63 @@
+\hypertarget{classCheckpoint}{}\section{Checkpoint Class Reference}
+\label{classCheckpoint}\index{Checkpoint@{Checkpoint}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCheckpoint_ac77ce3a0d510c48f332f05533191604b}{Checkpoint} (const ros\+::\+Node\+Handle \&nh, const int \&uav\+Count)
+\item 
+\hyperlink{classCheckpoint_a7fff1a4a6a71c2150a969fbe40d01c34}{$\sim$\+Checkpoint} ()
+\item 
+void \hyperlink{classCheckpoint_a9723c29046d6e60f593b9975ced698bf}{measure\+Time} (Eigen\+::\+Vector3d start\+Pos, Eigen\+::\+Vector3d end\+Pos, float radius)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Checkpoint@{Checkpoint}!Checkpoint@{Checkpoint}}
+\index{Checkpoint@{Checkpoint}!Checkpoint@{Checkpoint}}
+\subsubsection[{\texorpdfstring{Checkpoint(const ros\+::\+Node\+Handle \&nh, const int \&uav\+Count)}{Checkpoint(const ros::NodeHandle &nh, const int &uavCount)}}]{\setlength{\rightskip}{0pt plus 5cm}Checkpoint\+::\+Checkpoint (
+\begin{DoxyParamCaption}
+\item[{const ros\+::\+Node\+Handle \&}]{nh, }
+\item[{const int \&}]{uav\+Count}
+\end{DoxyParamCaption}
+)}\hypertarget{classCheckpoint_ac77ce3a0d510c48f332f05533191604b}{}\label{classCheckpoint_ac77ce3a0d510c48f332f05533191604b}
+\hyperlink{classCheckpoint}{Checkpoint} constructor -\/ registers subscribers to the R\+OS node handle 
+\begin{DoxyParams}{Parameters}
+{\em nh} & ros Node\+Handle \\
+\hline
+{\em uav\+Count} & number of U\+A\+Vs \\
+\hline
+\end{DoxyParams}
+\index{Checkpoint@{Checkpoint}!````~Checkpoint@{$\sim$\+Checkpoint}}
+\index{````~Checkpoint@{$\sim$\+Checkpoint}!Checkpoint@{Checkpoint}}
+\subsubsection[{\texorpdfstring{$\sim$\+Checkpoint()}{~Checkpoint()}}]{\setlength{\rightskip}{0pt plus 5cm}Checkpoint\+::$\sim$\+Checkpoint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCheckpoint_a7fff1a4a6a71c2150a969fbe40d01c34}{}\label{classCheckpoint_a7fff1a4a6a71c2150a969fbe40d01c34}
+\hyperlink{classCheckpoint}{Checkpoint} destructor -\/ deletes all \hyperlink{classUAV}{U\+AV} intstances 
+
+\subsection{Member Function Documentation}
+\index{Checkpoint@{Checkpoint}!measure\+Time@{measure\+Time}}
+\index{measure\+Time@{measure\+Time}!Checkpoint@{Checkpoint}}
+\subsubsection[{\texorpdfstring{measure\+Time(\+Eigen\+::\+Vector3d start\+Pos, Eigen\+::\+Vector3d end\+Pos, float radius)}{measureTime(Eigen::Vector3d startPos, Eigen::Vector3d endPos, float radius)}}]{\setlength{\rightskip}{0pt plus 5cm}void Checkpoint\+::measure\+Time (
+\begin{DoxyParamCaption}
+\item[{Eigen\+::\+Vector3d}]{start\+Pos, }
+\item[{Eigen\+::\+Vector3d}]{end\+Pos, }
+\item[{float}]{radius}
+\end{DoxyParamCaption}
+)}\hypertarget{classCheckpoint_a9723c29046d6e60f593b9975ced698bf}{}\label{classCheckpoint_a9723c29046d6e60f593b9975ced698bf}
+Measures time from the moment all U\+A\+Vs enter the starting circle until the moment all U\+A\+Vs enter the goal circle 
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & center of the starting circle \\
+\hline
+{\em end\+Pos} & center of the ending circle \\
+\hline
+{\em radius} & radius of the circles \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/Checkpoint.\+h\item 
+src/\hyperlink{Checkpoint_8cpp}{Checkpoint.\+cpp}\end{DoxyCompactItemize}

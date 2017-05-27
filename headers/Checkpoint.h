@@ -16,7 +16,10 @@ public:
     ~Checkpoint();
     void measureTime(Eigen::Vector3d startPos, Eigen::Vector3d endPos, float radius);
 private:
+  /** ROS node handle*/
     ros::NodeHandle nh_;
+    
+  /** Vector of pointers to UAV instances. Required in order to utilize callbacks.*/
     std::vector<UAV*> UAVs;
 
     bool allIn(Eigen::Vector3d pos, float r);

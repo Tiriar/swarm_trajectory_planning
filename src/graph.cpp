@@ -1,5 +1,10 @@
 #include "../headers/graph.h"
 
+/** \file
+    \brief Contains definitions of functions for representing the graph of paths and for path finding.
+    
+*/
+
 using namespace std;
 
 /**

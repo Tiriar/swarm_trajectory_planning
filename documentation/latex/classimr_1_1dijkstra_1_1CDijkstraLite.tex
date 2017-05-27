@@ -1,0 +1,88 @@
+\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite}{}\section{imr\+:\+:dijkstra\+:\+:C\+Dijkstra\+Lite$<$ T $>$ Class Template Reference}
+\label{classimr_1_1dijkstra_1_1CDijkstraLite}\index{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite$<$ T $>$@{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite$<$ T $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef T {\bfseries Weight}\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_a9e6728b398e7731721c4204fe6fd4c43}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_a9e6728b398e7731721c4204fe6fd4c43}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries add\+Edge} (long int from, long int to, Weight weight)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_adf385abaf7d64dc9ed6fb809f6b3a4df}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_adf385abaf7d64dc9ed6fb809f6b3a4df}
+
+\item 
+void {\bfseries add\+Edge} (long int from, long int to, Weight weight, bool check)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_ad5d0e78c9c28f00be6bb463b1bb421a9}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_ad5d0e78c9c28f00be6bb463b1bb421a9}
+
+\item 
+bool \hyperlink{classimr_1_1dijkstra_1_1CDijkstraLite_a355801f9010414276175a1940210faf9}{is\+\_\+valid} (void)
+\begin{DoxyCompactList}\small\item\em is\+\_\+valid \end{DoxyCompactList}\item 
+void {\bfseries load} (std\+::string filename)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_ab2510df598fc0d4c8804162e3efdeab6}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_ab2510df598fc0d4c8804162e3efdeab6}
+
+\item 
+void {\bfseries save} (std\+::string filename)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_a77ed872599a4871cf290b39fb624d557}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_a77ed872599a4871cf290b39fb624d557}
+
+\item 
+void {\bfseries solve} ()\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_ab1a467e67f2ac7d32d5e633e9073385e}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_ab1a467e67f2ac7d32d5e633e9073385e}
+
+\item 
+void \hyperlink{classimr_1_1dijkstra_1_1CDijkstraLite_ab37aecd07de50fc5bcf1974f8f30112a}{solve} (unsigned long int start, unsigned long int goal, std\+::vector$<$ Weight $>$ \&weights, std\+::vector$<$ long int $>$ \&path)
+\begin{DoxyCompactList}\small\item\em solve start and goal node are part of path \end{DoxyCompactList}\item 
+void {\bfseries solve} (unsigned long int start, unsigned long int goal, Weight \&weight, std\+::vector$<$ long int $>$ \&path)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_a992839f0bbb193cb57c68e96fc90c151}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_a992839f0bbb193cb57c68e96fc90c151}
+
+\item 
+void {\bfseries solve} (unsigned long int start, std\+::vector$<$ long int $>$ \&pred, std\+::vector$<$ Weight $>$ \&weight)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_aa98c6ead7ea7c7f1a4b66f8406914801}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_aa98c6ead7ea7c7f1a4b66f8406914801}
+
+\item 
+void {\bfseries solve} (unsigned long int start)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_a94ebb0bc2ab37befda0d8d2a1147a04e}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_a94ebb0bc2ab37befda0d8d2a1147a04e}
+
+\item 
+void {\bfseries clear} (void)\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_ac137fe7c4ed7d62bf320a79a3af6c808}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_ac137fe7c4ed7d62bf320a79a3af6c808}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite@{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite}!is\+\_\+valid@{is\+\_\+valid}}
+\index{is\+\_\+valid@{is\+\_\+valid}!imr\+::dijkstra\+::\+C\+Dijkstra\+Lite@{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite}}
+\subsubsection[{\texorpdfstring{is\+\_\+valid(void)}{is_valid(void)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ bool {\bf imr\+::dijkstra\+::\+C\+Dijkstra\+Lite}$<$ T $>$\+::is\+\_\+valid (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_a355801f9010414276175a1940210faf9}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_a355801f9010414276175a1940210faf9}
+
+
+is\+\_\+valid 
+
+
+
+ \subsubsection*{true if no duplicities of edges has been found }\index{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite@{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite}!solve@{solve}}
+\index{solve@{solve}!imr\+::dijkstra\+::\+C\+Dijkstra\+Lite@{imr\+::dijkstra\+::\+C\+Dijkstra\+Lite}}
+\subsubsection[{\texorpdfstring{solve(unsigned long int start, unsigned long int goal, std\+::vector$<$ Weight $>$ \&weights, std\+::vector$<$ long int $>$ \&path)}{solve(unsigned long int start, unsigned long int goal, std::vector< Weight > &weights, std::vector< long int > &path)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ void {\bf imr\+::dijkstra\+::\+C\+Dijkstra\+Lite}$<$ T $>$\+::solve (
+\begin{DoxyParamCaption}
+\item[{unsigned long int}]{start, }
+\item[{unsigned long int}]{goal, }
+\item[{std\+::vector$<$ Weight $>$ \&}]{weights, }
+\item[{std\+::vector$<$ long int $>$ \&}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classimr_1_1dijkstra_1_1CDijkstraLite_ab37aecd07de50fc5bcf1974f8f30112a}{}\label{classimr_1_1dijkstra_1_1CDijkstraLite_ab37aecd07de50fc5bcf1974f8f30112a}
+
+
+solve start and goal node are part of path 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em start} & \\
+\hline
+{\em goal} & \\
+\hline
+{\em weights} & \subsubsection*{path }\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/vtk\+\_\+voro/dijkstra\+\_\+lite.\+h\end{DoxyCompactItemize}

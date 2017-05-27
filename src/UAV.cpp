@@ -1,9 +1,16 @@
 #include "../headers/UAV.h"
 
+/*! \file UAV.cpp
+    \brief Class for representing the UAV
+    
+    Contains function definitions for the UAV class. The UAV class 
+    consists of location callback for updating the UAV location.
+*/
+
 using namespace std;
 
 /**
- * UAV constructor
+ * UAV constructor, registers the callback to the ROS node handle
  * @param nh ros NodeHandle
  * @param uavName name of the UAV
  */
@@ -22,7 +29,7 @@ UAV::~UAV() {
 }
 
 /**
- * UAV position callback
+ * UAV position callback. Updates the UAV position.
  * @param msg odometry message
  */
 void UAV::positionCallback(const nav_msgs::OdometryConstPtr& msg) {
@@ -32,7 +39,7 @@ void UAV::positionCallback(const nav_msgs::OdometryConstPtr& msg) {
 }
 
 /**
- * UAV position getter
+ * UAV position getter.
  * @return UAV position
  */
 Eigen::Vector3d UAV::getPosition() {
@@ -41,7 +48,7 @@ Eigen::Vector3d UAV::getPosition() {
 }
 
 /**
- * Updates position of the UAV
+ * Tells ROS to update the UAV position
  */
 void UAV::updatePosition() {
     ros::spinOnce();

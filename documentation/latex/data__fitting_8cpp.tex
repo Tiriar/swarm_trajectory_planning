@@ -1,0 +1,87 @@
+\hypertarget{data__fitting_8cpp}{}\section{src/data\+\_\+fitting.cpp File Reference}
+\label{data__fitting_8cpp}\index{src/data\+\_\+fitting.\+cpp@{src/data\+\_\+fitting.\+cpp}}
+
+
+Contains functions required for evaluating the graph.  
+
+
+{\ttfamily \#include \char`\"{}../headers/data\+\_\+fitting.\+h\char`\"{}}\\*
+Include dependency graph for data\+\_\+fitting.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{data__fitting_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{data__fitting_8cpp_a74deb510fd707d8e6674b5dd45af6d31}{fitting\+\_\+run} (double time\+\_\+without\+\_\+obstacles, vector$<$ double $>$ x, vector$<$ vector$<$ double $>$$>$ y)
+\item 
+vector$<$ double $>$ \hyperlink{data__fitting_8cpp_a4527de60f484ec1a00df7164372d480a}{lin\+\_\+fit} (vector$<$ double $>$ x, vector$<$ double $>$ y)
+\item 
+vector$<$ double $>$ \hyperlink{data__fitting_8cpp_a375adde1de04ca6d8bae502b2902aa74}{exp\+\_\+fit} (vector$<$ double $>$ x, vector$<$ double $>$ y)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains functions required for evaluating the graph. 
+
+Contains functions required for evaluating the graph using a heuristic function. 
+
+\subsection{Function Documentation}
+\index{data\+\_\+fitting.\+cpp@{data\+\_\+fitting.\+cpp}!exp\+\_\+fit@{exp\+\_\+fit}}
+\index{exp\+\_\+fit@{exp\+\_\+fit}!data\+\_\+fitting.\+cpp@{data\+\_\+fitting.\+cpp}}
+\subsubsection[{\texorpdfstring{exp\+\_\+fit(vector$<$ double $>$ x, vector$<$ double $>$ y)}{exp_fit(vector< double > x, vector< double > y)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ exp\+\_\+fit (
+\begin{DoxyParamCaption}
+\item[{vector$<$ double $>$}]{x, }
+\item[{vector$<$ double $>$}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{data__fitting_8cpp_a375adde1de04ca6d8bae502b2902aa74}{}\label{data__fitting_8cpp_a375adde1de04ca6d8bae502b2902aa74}
+Fits an exponential function to the input data 
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/axis of the input data \\
+\hline
+{\em y} & Y-\/axis of the input data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$double$>$ of the exponential parameters (a,b) for f(x)=a$\ast$e$^\wedge$(b$\ast$x) 
+\end{DoxyReturn}
+\index{data\+\_\+fitting.\+cpp@{data\+\_\+fitting.\+cpp}!fitting\+\_\+run@{fitting\+\_\+run}}
+\index{fitting\+\_\+run@{fitting\+\_\+run}!data\+\_\+fitting.\+cpp@{data\+\_\+fitting.\+cpp}}
+\subsubsection[{\texorpdfstring{fitting\+\_\+run(double time\+\_\+without\+\_\+obstacles, vector$<$ double $>$ x, vector$<$ vector$<$ double $>$$>$ y)}{fitting_run(double time_without_obstacles, vector< double > x, vector< vector< double >> y)}}]{\setlength{\rightskip}{0pt plus 5cm}void fitting\+\_\+run (
+\begin{DoxyParamCaption}
+\item[{double}]{time\+\_\+without\+\_\+obstacles, }
+\item[{vector$<$ double $>$}]{x, }
+\item[{vector$<$ vector$<$ double $>$$>$}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{data__fitting_8cpp_a74deb510fd707d8e6674b5dd45af6d31}{}\label{data__fitting_8cpp_a74deb510fd707d8e6674b5dd45af6d31}
+Computes the edges evaluation function and prints it out (d = distance, g = gap size, f = flock size) 
+\begin{DoxyParams}{Parameters}
+{\em time\+\_\+without\+\_\+obstacles} & measured time without obstacles normalized to 1 meter \\
+\hline
+{\em x} & x\mbox{[}i\mbox{]} = gap size for i-\/th measurement \\
+\hline
+{\em y} & y\mbox{[}F\+L\+O\+C\+K\+\_\+\+S\+I\+ZE\mbox{]}\mbox{[}i\mbox{]} = measured time increment for i-\/th gap size (normalized to 1 meter) \\
+\hline
+\end{DoxyParams}
+\index{data\+\_\+fitting.\+cpp@{data\+\_\+fitting.\+cpp}!lin\+\_\+fit@{lin\+\_\+fit}}
+\index{lin\+\_\+fit@{lin\+\_\+fit}!data\+\_\+fitting.\+cpp@{data\+\_\+fitting.\+cpp}}
+\subsubsection[{\texorpdfstring{lin\+\_\+fit(vector$<$ double $>$ x, vector$<$ double $>$ y)}{lin_fit(vector< double > x, vector< double > y)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ lin\+\_\+fit (
+\begin{DoxyParamCaption}
+\item[{vector$<$ double $>$}]{x, }
+\item[{vector$<$ double $>$}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{data__fitting_8cpp_a4527de60f484ec1a00df7164372d480a}{}\label{data__fitting_8cpp_a4527de60f484ec1a00df7164372d480a}
+Fits a linear function to the input data 
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/axis of the input data \\
+\hline
+{\em y} & Y-\/axis of the input data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$double$>$ of the exponential parameters (a,b) for f(x)=ax+b 
+\end{DoxyReturn}

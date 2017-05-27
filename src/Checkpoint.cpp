@@ -1,9 +1,17 @@
 #include "../headers/Checkpoint.h"
 
+/** \file
+    \brief Contains definitions for the Checkpoints class
+    
+    Contains function definitions for the Checkpoint class. The Checkpoint class 
+    consists of functions required for detecting that the UAV swarm has flown
+    through a particular location and for measuring time of flight.
+*/
+
 using namespace std;
 
 /**
- * Checkpoint constructor - sets subscribers
+ * Checkpoint constructor - registers subscribers to the ROS node handle
  * @param nh ros NodeHandle
  * @param uavCount number of UAVs
  */
@@ -17,7 +25,7 @@ Checkpoint::Checkpoint(const ros::NodeHandle& nh, const int &uavCount): nh_(nh) 
 }
 
 /**
- * Checkpoint destructor - deletes all UAVs
+ * Checkpoint destructor - deletes all UAV intstances
  */
 Checkpoint::~Checkpoint() {
     for (UAV *uav : UAVs) {
@@ -26,7 +34,7 @@ Checkpoint::~Checkpoint() {
 }
 
 /**
- * Measures time from the moment all UAVs enter the starting circle to the moment all UAVs enter the goal circle
+ * Measures time from the moment all UAVs enter the starting circle until the moment all UAVs enter the goal circle
  * @param startPos center of the starting circle
  * @param endPos center of the ending circle
  * @param radius radius of the circles
@@ -57,7 +65,7 @@ void Checkpoint::measureTime(Eigen::Vector3d startPos, Eigen::Vector3d endPos, f
 }
 
 /**
- * Checks if all UAVs entered a circle
+ * Checks if all UAVs are located in a circle
  * @param pos center of the circle
  * @param r radius of the circle
  * @return True if all UAVs entered the circle

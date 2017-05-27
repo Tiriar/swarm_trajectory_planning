@@ -1,0 +1,192 @@
+\hypertarget{graph_8cpp}{}\section{src/graph.cpp File Reference}
+\label{graph_8cpp}\index{src/graph.\+cpp@{src/graph.\+cpp}}
+
+
+Contains definitions of functions for representing the graph of paths and for path finding.  
+
+
+{\ttfamily \#include \char`\"{}../headers/graph.\+h\char`\"{}}\\*
+Include dependency graph for graph.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graph_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ int $>$ \hyperlink{graph_8cpp_a4f76dec25df84647976b08cf172ab9b1}{find\+\_\+path} (const string \&fpath, int flock\+\_\+size, int source\+\_\+idx, int goal\+\_\+idx)
+\item 
+double \hyperlink{graph_8cpp_a9fba6aac78b4b7e5cddcc5c037ad6199}{evaluate\+\_\+edge} (vector$<$ double $>$ n1, vector$<$ double $>$ n2, int flock\+\_\+size, double gap)
+\item 
+int \hyperlink{graph_8cpp_a3fb0b3ab7cf6e09976ac5f8e075ade7a}{min\+Distance} (double dist\mbox{[}$\,$\mbox{]}, bool spt\+Set\mbox{[}$\,$\mbox{]}, unsigned long vnum)
+\item 
+vector$<$ int $>$ \hyperlink{graph_8cpp_a401501404aa387d4852fcc2a9ff3ad2d}{get\+\_\+path} (int parent\mbox{[}$\,$\mbox{]}, int j, vector$<$ int $>$ out)
+\item 
+vector$<$ int $>$ \hyperlink{graph_8cpp_a7f0876063956a2c9f083434f30d8abd3}{dijkstra} (vector$<$ vector$<$ double $>$$>$ graph, int src, int goal, unsigned long vnum)
+\item 
+vector$<$ vector$<$ double $>$ $>$ \hyperlink{graph_8cpp_ac83a486cf316213a12cbffd5598b2fdd}{load\+\_\+vertices} (const string \&path)
+\item 
+vector$<$ vector$<$ int $>$ $>$ \hyperlink{graph_8cpp_a5061393c1ae1c9773903ae2ac46adc0a}{load\+\_\+edges} (const string \&path)
+\item 
+vector$<$ string $>$ \hyperlink{graph_8cpp_a21228818f6b97bdd706d7980b74a2966}{split} (const string \&s)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains definitions of functions for representing the graph of paths and for path finding. 
+
+
+
+\subsection{Function Documentation}
+\index{graph.\+cpp@{graph.\+cpp}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{dijkstra(vector$<$ vector$<$ double $>$$>$ graph, int src, int goal, unsigned long vnum)}{dijkstra(vector< vector< double >> graph, int src, int goal, unsigned long vnum)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ dijkstra (
+\begin{DoxyParamCaption}
+\item[{vector$<$ vector$<$ double $>$$>$}]{graph, }
+\item[{int}]{src, }
+\item[{int}]{goal, }
+\item[{unsigned long}]{vnum}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_a7f0876063956a2c9f083434f30d8abd3}{}\label{graph_8cpp_a7f0876063956a2c9f083434f30d8abd3}
+Dijkstra\textquotesingle{}s single source algorithm for a graph represented using adjacency matrix 
+\begin{DoxyParams}{Parameters}
+{\em graph} & graph representation \\
+\hline
+{\em src} & source node index \\
+\hline
+{\em vnum} & number of vertices in the graph \\
+\hline
+\end{DoxyParams}
+\index{graph.\+cpp@{graph.\+cpp}!evaluate\+\_\+edge@{evaluate\+\_\+edge}}
+\index{evaluate\+\_\+edge@{evaluate\+\_\+edge}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{evaluate\+\_\+edge(vector$<$ double $>$ n1, vector$<$ double $>$ n2, int flock\+\_\+size, double gap)}{evaluate_edge(vector< double > n1, vector< double > n2, int flock_size, double gap)}}]{\setlength{\rightskip}{0pt plus 5cm}double evaluate\+\_\+edge (
+\begin{DoxyParamCaption}
+\item[{vector$<$ double $>$}]{n1, }
+\item[{vector$<$ double $>$}]{n2, }
+\item[{int}]{flock\+\_\+size, }
+\item[{double}]{gap}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_a9fba6aac78b4b7e5cddcc5c037ad6199}{}\label{graph_8cpp_a9fba6aac78b4b7e5cddcc5c037ad6199}
+Evaluates graph edge 
+\begin{DoxyParams}{Parameters}
+{\em n1} & node \#1 coordinates \\
+\hline
+{\em n2} & node \#2 coordinates \\
+\hline
+{\em flock\+\_\+size} & number of U\+A\+Vs \\
+\hline
+{\em gap} & size of gap between obstacles around the edge \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+edge cost 
+\end{DoxyReturn}
+\index{graph.\+cpp@{graph.\+cpp}!find\+\_\+path@{find\+\_\+path}}
+\index{find\+\_\+path@{find\+\_\+path}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{find\+\_\+path(const string \&fpath, int flock\+\_\+size, int source\+\_\+idx, int goal\+\_\+idx)}{find_path(const string &fpath, int flock_size, int source_idx, int goal_idx)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ find\+\_\+path (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{fpath, }
+\item[{int}]{flock\+\_\+size, }
+\item[{int}]{source\+\_\+idx, }
+\item[{int}]{goal\+\_\+idx}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_a4f76dec25df84647976b08cf172ab9b1}{}\label{graph_8cpp_a4f76dec25df84647976b08cf172ab9b1}
+Main path finding function -\/ loads graph and finds the shortest path from the start node to the end node 
+\begin{DoxyParams}{Parameters}
+{\em fpath} & graph file path \\
+\hline
+{\em flock\+\_\+size} & number of U\+A\+Vs \\
+\hline
+{\em source\+\_\+idx} & start node \\
+\hline
+{\em goal\+\_\+idx} & end node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+path as a vector of node indices 
+\end{DoxyReturn}
+\index{graph.\+cpp@{graph.\+cpp}!get\+\_\+path@{get\+\_\+path}}
+\index{get\+\_\+path@{get\+\_\+path}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{get\+\_\+path(int parent[], int j, vector$<$ int $>$ out)}{get_path(int parent[], int j, vector< int > out)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ get\+\_\+path (
+\begin{DoxyParamCaption}
+\item[{int}]{parent\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{j, }
+\item[{vector$<$ int $>$}]{out}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_a401501404aa387d4852fcc2a9ff3ad2d}{}\label{graph_8cpp_a401501404aa387d4852fcc2a9ff3ad2d}
+Function to find shortest path from source to j using parent array 
+\begin{DoxyParams}{Parameters}
+{\em parent} & parent node array \\
+\hline
+{\em j} & goal node \\
+\hline
+\end{DoxyParams}
+\index{graph.\+cpp@{graph.\+cpp}!load\+\_\+edges@{load\+\_\+edges}}
+\index{load\+\_\+edges@{load\+\_\+edges}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{load\+\_\+edges(const string \&path)}{load_edges(const string &path)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$vector$<$int$>$ $>$ load\+\_\+edges (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_a5061393c1ae1c9773903ae2ac46adc0a}{}\label{graph_8cpp_a5061393c1ae1c9773903ae2ac46adc0a}
+Loads edges from the given file 
+\begin{DoxyParams}{Parameters}
+{\em path} & file path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+edges as vertex indices 
+\end{DoxyReturn}
+\index{graph.\+cpp@{graph.\+cpp}!load\+\_\+vertices@{load\+\_\+vertices}}
+\index{load\+\_\+vertices@{load\+\_\+vertices}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{load\+\_\+vertices(const string \&path)}{load_vertices(const string &path)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$vector$<$double$>$ $>$ load\+\_\+vertices (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_ac83a486cf316213a12cbffd5598b2fdd}{}\label{graph_8cpp_ac83a486cf316213a12cbffd5598b2fdd}
+Loads vertices from the given file (+converts mm to m) 
+\begin{DoxyParams}{Parameters}
+{\em path} & file path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vertices coordinates 
+\end{DoxyReturn}
+\index{graph.\+cpp@{graph.\+cpp}!min\+Distance@{min\+Distance}}
+\index{min\+Distance@{min\+Distance}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{min\+Distance(double dist[], bool spt\+Set[], unsigned long vnum)}{minDistance(double dist[], bool sptSet[], unsigned long vnum)}}]{\setlength{\rightskip}{0pt plus 5cm}int min\+Distance (
+\begin{DoxyParamCaption}
+\item[{double}]{dist\mbox{[}$\,$\mbox{]}, }
+\item[{bool}]{spt\+Set\mbox{[}$\,$\mbox{]}, }
+\item[{unsigned long}]{vnum}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_a3fb0b3ab7cf6e09976ac5f8e075ade7a}{}\label{graph_8cpp_a3fb0b3ab7cf6e09976ac5f8e075ade7a}
+A utility function to find the vertex with minimum distance value, from the set of vertices not yet included in shortest path tree 
+\begin{DoxyParams}{Parameters}
+{\em dist} & dist\mbox{[}i\mbox{]} = the shortest distance from src to i \\
+\hline
+{\em spt\+Set} & spt\+Set\mbox{[}i\mbox{]} = true if vertex i is included or in shortest path tree or shortest distance from src to i is finalized \\
+\hline
+{\em vnum} & number of vertices in the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index of closest vertex 
+\end{DoxyReturn}
+\index{graph.\+cpp@{graph.\+cpp}!split@{split}}
+\index{split@{split}!graph.\+cpp@{graph.\+cpp}}
+\subsubsection[{\texorpdfstring{split(const string \&s)}{split(const string &s)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$string$>$ split (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{graph_8cpp_a21228818f6b97bdd706d7980b74a2966}{}\label{graph_8cpp_a21228818f6b97bdd706d7980b74a2966}
+Utility function for string splitting using spaces as delimiter 
+\begin{DoxyParams}{Parameters}
+{\em s} & input string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of words 
+\end{DoxyReturn}

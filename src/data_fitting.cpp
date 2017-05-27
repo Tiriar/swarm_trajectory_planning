@@ -1,5 +1,11 @@
 #include "../headers/data_fitting.h"
 
+/** \file
+    \brief Contains functions required for evaluating the graph.
+    
+    Contains functions required for evaluating the graph using a heuristic function.
+*/
+
 using namespace std;
 
 /**
