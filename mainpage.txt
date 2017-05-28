@@ -1,0 +1,11 @@
+/*! \mainpage Index Page
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the repository for the UAV swarm trajectory planning package. It contains tools for measuring the time of flight between devised Checkpoint classes and for detecting the UAV swarm position.
+ *
+ * \section install_sec Compilation
+ *
+ * For instruction on how to compile see the guide at https://docs.google.com/document/d/1qHo_CNOIal6DE-H9xQ5E_BIcoCusZ4n5__SjhAx3oRk/edit
+ *
+ */
