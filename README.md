@@ -53,3 +53,9 @@ The vtk_voro program will output a voro_output.txt file. Place this file in the 
 roslaunch swarm_trajectory_planning simulation.launch
 ```
 The program will output the found path on the terminal.
+
+## Documentation
+Doxygen generated documentation is located inside the “documentation” folder. To generate your own version of documentation (after e.g. altering the code’s comments), download the doxygen tool and run the following command in the root of the package repository:
+```bash
+doxygen doxygen_configuration
+```
